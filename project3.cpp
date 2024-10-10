@@ -1,6 +1,8 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
+/* *********************************** CPUJob Class *********************************** */
 class CPUJob {
     public:
         int job_id; // Unique identifier for the job
@@ -8,8 +10,62 @@ class CPUJob {
         int job_type; // Job type (1-10)
         int cpu_time_consumed; // Total CPU time consumed by the job
         int memory_consumed; // Total memory consumed thus far
+
+        CPUJob();
+        CPUJob(int jobId, int prio, int JT, int CPU_TC, int MC);
+        CPUJob(CPUJob& otherCPUJob);
+        ~CPUJob();
+
+        int getJobId();
+        int getPriority();
+        int getJobType();
+        int getCPU_TC();
+        int getMC();
+
+        void setJobId(int jobId);
+        void setPriority(int prio);
+        void setJobType(int JT);
+        void setCPU_TC(int CPU_TC);
+        void setMC(int MC);
 };
 
+CPUJob::CPUJob(){
+    job_id = NULL;
+    priority = NULL;
+    job_type = NULL;
+    cpu_time_consumed = NULL;
+    memory_consumed = NULL;
+}
+CPUJob::CPUJob(int jobId, int prio, int JT, int CPU_TC, int MC){
+    job_id = jobId;
+    priority = prio;
+    job_type = JT;
+    cpu_time_consumed = CPU_TC;
+    memory_consumed = MC;
+}
+CPUJob::CPUJob(CPUJob& otherCPUJob){
+    job_id = otherCPUJob.job_id;
+    priority = otherCPUJob.priority;
+    job_type = otherCPUJob.job_type;
+    cpu_time_consumed = otherCPUJob.cpu_time_consumed;
+    memory_consumed = otherCPUJob.memory_consumed;
+}
+
+int CPUJob::getJobId(){ return job_id; }
+int CPUJob::getPriority(){ return priority; }
+int CPUJob::getJobType(){ return job_type; }
+int CPUJob::getCPU_TC() { return cpu_time_consumed; }
+int CPUJob::getMC() { return memory_consumed; }
+
+void CPUJob::setJobId(int jobId){ job_id = jobId; }
+void CPUJob::setPriority(int prio){ priority = prio; }
+void CPUJob::setJobType(int jobType){ job_type = jobType; }
+void CPUJob::setCPU_TC(int CPU_TC) { cpu_time_consumed = CPU_TC; }
+void CPUJob::setMC(int MC) { memory_consumed = MC; }
+
+
+
+/* *********************************** Queue Class *********************************** */
 template <class DT>
 class Queue {
     public:
@@ -17,14 +73,73 @@ class Queue {
         Queue<DT>* next; // Pointer to the next node in the queue
 };
 
+/* *********************************** NovelQueue Class *********************************** */
 template <class DT>
 class NovelQueue {
     public:
         Queue<DT>* front; // Pointer to the front of the queue
         Queue<DT>** NodePtrs; // Array of pointers to Queue nodes
-        int size; // Number of elements in the queue)
+        int size; // Number of elements in the queue
+
+        // Operations of NovelQueue
+        void enqueue(int jobId, int prio, int JT, int CPU_TC, int MC); // Adds chips to the end of the queue (linkedlist)
+        void enqueue(CPUJob* newCPUJob);
+        CPUJob* dequeue(); 
+        void modify(int jobId, int new_Prio, int new_JT, int newCPU_TC, int new_MC);
+        void change(int jobId, int fieldIndex, int newValue);
+        void promote(int jobId, int positions);
+        CPUJob* reorder(int attributeIndex);
+
+        int count();
+        
+        void display() const;
+        void listJobs() const;
 };
 
+template <class DT>
+void NovelQueue<DT>::enqueue(int jobId, int prio, int JT, int CPU_TC, int MC){
+
+}
+template <class DT>
+void NovelQueue<DT>::enqueue(CPUJob* newCPUJob){
+
+}
+template <class DT>
+CPUJob* NovelQueue<DT>::dequeue(){
+
+}
+template <class DT>
+void NovelQueue<DT>::modify(int jobId, int new_Prio, int new_JT, int newCPU_TC, int new_MC){
+
+}
+template <class DT>
+void NovelQueue<DT>::change(int jobId, int fieldIndex, int newValue){
+
+}
+template <class DT>
+void NovelQueue<DT>::promote(int jobId, int positions){
+
+}
+template <class DT>
+CPUJob* NovelQueue<DT>::reorder(int attributeIndex){
+
+}
+
+template <class DT>
+int NovelQueue<DT>::count(){
+
+}
+
+template <class DT>
+void NovelQueue<DT>::display() const{
+
+}
+template <class DT>
+void NovelQueue<DT>::listJobs() const{
+
+}
+
+/* *********************************** Main *********************************** */
 int main() {
     int n; // Number of commands
     cin >> n; // Read the number of commands
