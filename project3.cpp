@@ -336,7 +336,7 @@ CPUJob* NovelQueue<DT>::dequeue(){
     return result; // Return the dequeued job
 }
 
-/* LLM: 
+/* LLM: Helped me dereference pointers to gain access to the desired attributes
 */
 // Modifies a job's attributes based on its jobId
 template <class DT>
